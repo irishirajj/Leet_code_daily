@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int findSpecialInteger(vector<int>& arr) {
+        int n=arr.size();
+        int counter =1;
+        int ans=0;
+        if(n==1)return arr[0];
+
+        for(int i=1;i<n;i++){
+            if(arr[i]==arr[i-1]){
+                counter++;
+
+            }
+            else
+                counter=1;
+            if(counter>n/4){
+                ans=arr[i];
+                break;
+            }
+        }
+
+
+        return ans;
+    }
+};

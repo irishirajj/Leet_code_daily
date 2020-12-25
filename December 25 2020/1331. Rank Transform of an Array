@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> arrayRankTransform(vector<int>& arr) {
+
+        map<int,int>mp;
+
+        for(int i=0;i<arr.size();i++){
+            mp[arr[i]]=0;
+        }
+        map<int,int>::iterator it;
+        int rank=1;
+        for(it=mp.begin();it!=mp.end();it++){
+            it->second=rank;
+            //cout<<it->first<<" "<<it->second<<"\n";
+            rank++;
+        }
+        vector<int>ans;
+        for(int i=0;i<arr.size();i++){
+            ans.push_back(mp[arr[i]]);
+        }
+        return ans;
+    }
+};

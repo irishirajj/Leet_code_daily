@@ -1,4 +1,4 @@
-class Solution {
+class Solution {          //This is the first method;
 public:
     int findSpecialInteger(vector<int>& arr) {
         int n=arr.size();
@@ -23,3 +23,25 @@ public:
         return ans;
     }
 };
+/*class Solution {          //This is the second method;this is slower
+public:
+    static bool sortByVal(const pair<int,int>& a, const pair<int,int>& b){
+        return(a.second>b.second);
+    }
+    int findSpecialInteger(vector<int>& arr) {
+        int n=arr.size();
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++){
+            mp[arr[i]]++;
+        }
+        vector<pair<int,int>>v;
+        unordered_map<int,int>::iterator it;
+        for(it=mp.begin();it!=mp.end();it++){
+            v.push_back(make_pair(it->first,it->second));
+        }
+        sort(v.begin(),v.end(), sortByVal);
+
+
+        return v[0].first;
+    }
+};*/

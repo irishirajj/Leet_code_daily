@@ -1,0 +1,49 @@
+class Solution {
+public:
+    vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
+        int suma,sumb;
+        suma=accumulate(A.begin(),A.end(),0);
+        sumb=accumulate(B.begin(),B.end(),0);
+        int m,n;
+        m=A.size();
+        n=B.size();
+        sort(A.begin(),A.end());
+        sort(B.begin(),B.end());
+        vector<int>ans;
+        int success=1;
+        if(suma>=sumb){
+        for(int i=0;i<m*success;i++){
+            for(int j=0;j<n;j++){
+                if(suma-sumb>2*(A[i]-B[j])){
+                    break;
+                }
+                else if(suma-sumb==2*(A[i]-B[j])){
+                    ans.push_back(A[i]);
+                    ans.push_back(B[j]);
+                    success=0;
+                    break;
+
+                }
+            }
+        }
+        }
+        if(suma<sumb){
+            for(int j=0;j<n*success;j++){
+            for(int i=0;i<m;i++){
+                if(sumb-suma>2*(B[j]-A[i])){
+                    break;
+                }
+                else if(sumb-suma==2*(B[j]-A[i])){
+                    ans.push_back(A[i]);
+                    ans.push_back(B[j]);
+                    success=0;
+                    break;
+
+                }
+            }
+        }
+        }
+
+        return ans;
+    }
+};

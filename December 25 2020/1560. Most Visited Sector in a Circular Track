@@ -1,0 +1,48 @@
+class Solution {
+public:
+    static bool sortByValue(const pair<int,int>&a, const pair<int,int>&b){
+        return(a.second>b.second);
+    }
+    vector<int> mostVisited(int n, vector<int>& rounds) {
+        int r=rounds.size();
+        map<int,int>m;
+
+        for(int i=1;i<r;i++){
+            if(rounds[i]>=rounds[i-1]){
+                for(int j=rounds[i-1];j<=rounds[i];j++){
+                    m[j]++;
+                }
+            }
+            else{
+                for(int k=rounds[i-1];k<=n;k++){
+                    m[k]++;
+                }
+                for(int l=1;l<=rounds[i];l++){
+                    m[l]++;
+                }
+            }
+
+        }
+        for(int i=1;i<r-1;i++){
+            m[rounds[i]]--;
+        }
+        map<int,int>::iterator it;
+        vector<pair<int,int>>v;
+        for(it=m.begin();it!=m.end();it++){
+            v.push_back(make_pair(it->first,it->second));
+        }
+        sort(v.begin(),v.end(),sortByValue);
+        int max=v[0].second;
+        vector<int>ans;
+        ans.push_back(v[0].first);
+        for(int i=1;i<v.size();i++){
+            if(v[i].second==max){
+                ans.push_back(v[i].first);
+            }
+            else
+                break;
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};

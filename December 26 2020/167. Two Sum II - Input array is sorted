@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        int n=numbers.size();
+        int a=0,b=n-1;
+        while(numbers[a]+numbers[b]!=target){
+            if(numbers[a]+numbers[b]>target)b--;
+            else if(numbers[a]+numbers[b]<target)a++;
+        }
+        vector<int>ans;
+        ans.push_back(a+1);
+        ans.push_back(b+1);
+        return ans;
+    }
+};
